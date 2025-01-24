@@ -12,3 +12,12 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Crop {
+  cropCode String @id
+  cropName String
+  cropImage Bytes
+  scientificName String
+  category String
+  season Int
+}
