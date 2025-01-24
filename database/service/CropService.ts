@@ -3,11 +3,14 @@ import {prisma} from "../prisma-data-store";
 
 export async function AddCrop(crop:Crop){
     try {
+        const base64Image = Uint8Array.from(
+            Buffer.from(crop.cropImage,'base64')
+        )
         const newCrop = await prisma.crop.create({
             data:{
                 cropCode:crop.cropCode,
                 cropName:crop.cropName,
-                cropImage:crop.cropImage,
+                cropImage:base64Image,
                 scientificName:crop.scientificName,
                 category:crop.category,
                 season:crop.season
