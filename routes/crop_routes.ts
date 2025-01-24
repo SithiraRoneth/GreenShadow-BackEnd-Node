@@ -1,5 +1,5 @@
 import express from "express";
-import {AddCrop, DeleteCrop, UpdateCrop} from "../database/service/CropService";
+import {AddCrop, DeleteCrop, GetAllCrops, UpdateCrop} from "../database/service/CropService";
 import {Crop} from "../model/Crop";
 
 const router = express.Router();
@@ -39,6 +39,16 @@ router.delete('/deleteCrop/:cropCode', async (req,res)=>{
     }catch (err){
         console.log("Error during deleting crop :", err);
         res.status(400).send("Error during crop");
+    }
+})
+
+router.get('/viewAllCrop', async(req,res)=>{
+    console.log("All crop details are retrieved");
+    try {
+        const crops = await GetAllCrops();
+        res.json(crops)
+    }catch (err){
+        console.log("error during getting crops")
     }
 })
 export default router;

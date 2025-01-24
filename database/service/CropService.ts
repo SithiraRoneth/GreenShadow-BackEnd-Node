@@ -3,7 +3,7 @@ import {prisma} from "../prisma-data-store";
 
 export async function AddCrop(crop:Crop){
     try {
-        const newCrop = await prisma.customer.create({
+        const newCrop = await prisma.crop.create({
             data:{
                 cropCode:crop.cropCode,
                 cropName:crop.cropName,
@@ -25,10 +25,18 @@ export async function UpdateCrop(cropCode:string, crop:Crop){
 
 export async function DeleteCrop(cropCode:string){
     try {
-        await prisma.customer.delete({
+        await prisma.crop.delete({
             where:{cropCode:cropCode}
         })
     }catch (err){
         console.log("Error during customer deleting : ", err)
+    }
+}
+
+export async function GetAllCrops(){
+    try{
+        await prisma.crop.findMany();
+    }catch (err){
+        console.log("Error getting crops : ",err)
     }
 }
