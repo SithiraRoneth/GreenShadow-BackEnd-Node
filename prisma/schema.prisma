@@ -14,10 +14,23 @@ datasource db {
 }
 
 model Crop {
-  cropCode String @id
-  cropName String
-  cropImage Bytes
+  cropCode       String @id
+  cropName       String
+  cropImage      Bytes
   scientificName String
-  category String
-  season Int
+  category       String
+  season         Int
+}
+
+model Field {
+  fieldCode     String @id
+  fieldName     String
+  fieldImage    Bytes
+  fieldLocation String
+}
+
+model Equipment {
+  equipmentCode String @id
+  equipmentName String
+  equipmentType String
 }
