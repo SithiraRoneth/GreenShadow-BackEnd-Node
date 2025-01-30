@@ -1,7 +1,7 @@
 import express from "express";
 import {Crop} from "../model/Crop";
 import {extractImages} from "../util/AppUtil";
-import {AddCrop, DeleteCrop, GetAllCrops, UpdateCrop} from "../Service/CropService";
+import {AddCrop, DeleteCrop, GetAllCrops, UpdateCrop} from "../service/CropService";
 
 const router = express.Router();
 
