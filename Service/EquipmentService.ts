@@ -1,5 +1,5 @@
-import {prisma} from "../prisma-data-store";
-import {Equipment} from "../../model/Equipment";
+import {Equipment} from "../model/Equipment";
+import {prisma} from "../database/prisma-data-store";
 
 export async function AddEquip(e:Equipment){
     try {

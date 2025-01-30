@@ -1,5 +1,5 @@
 import express from "express";
-import {AddEquip} from "../database/service/EquipmentService";
+import {AddEquip} from "../Service/EquipmentService";
 
 const router = express.Router();
 

@@ -1,11 +1,13 @@
 import express from "express";
-import {AddCrop, DeleteCrop, GetAllCrops, UpdateCrop} from "../database/service/CropService";
 import {Crop} from "../model/Crop";
+import {extractImages} from "../util/AppUtil";
+import {AddCrop, DeleteCrop, GetAllCrops, UpdateCrop} from "../Service/CropService";
 
 const router = express.Router();
 
 router.post('/addCrop',async (req,res)=>{
-    const crop = req.body;
+    const crop:Crop = req.body;
+    crop.cropImage = extractImages(req)
     console.log("Received Crops : ", crop);
     try{
         const addedCrop = await AddCrop(crop);
