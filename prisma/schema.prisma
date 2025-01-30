@@ -34,3 +34,37 @@ model Equipment {
   equipmentName String
   equipmentType String
 }
+
+model Staff {
+  email     String    @id @unique
+  firstName String
+  lastName  String
+  gender    String
+  address   String
+  contactNo Int
+  jobrole   String
+  vehicles  Vehicle[]
+}
+
+model Vehicle {
+  licensePlateNo  String @id @unique
+  fuelType        String
+  color           String
+  vehicleCategory String
+  Staff           Staff? @relation(fields: [staffEmail], references: [email])
+  staffEmail      String @unique @map("staff_email")
+}
+
+model User {
+  userEmail String          @id @unique
+  password  String
+  role      String
+  logs      MonitoringLog[]
+}
+
+model MonitoringLog {
+  logCode String  @id
+  date    String
+  User    User?   @relation(fields: [userId], references: [userEmail])
+  userId  String? @map("user_email")
+}
