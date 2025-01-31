@@ -9,13 +9,26 @@ export async function AddStaff(staff:Staff){
             }
         })
         console.log("Added Staff :",addedStaff);
+        return addedStaff;
     }catch (err){
         console.log("Error during staff adding :  ",err)
     }
 }
 
 export async function UpdateStaff(staffId:string,staff:Staff){
-
+    try{
+        const updatedStaff = await prisma.staff.update({
+            where:{email:staffId},
+            data:{
+                ...staff
+            }
+        });
+        console.log("Updated staff :",updatedStaff)
+        return updatedStaff;
+    }catch (err){
+        console.log("Error during updating staff :" , err)
+        throw err;
+    }
 }
 
 export async function DeleteStaff(staffId:string){
@@ -31,7 +44,8 @@ export async function DeleteStaff(staffId:string){
 
 export async function GetAllStaff(){
     try{
-        await prisma.staff.findMany();
+        const allStaff = await prisma.staff.findMany();
+        return allStaff;
     }catch (err){
         console.log("Error getting staff details");
     }
