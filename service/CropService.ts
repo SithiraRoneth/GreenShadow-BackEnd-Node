@@ -3,9 +3,7 @@ import {prisma} from "../database/prisma-data-store";
 
 export async function AddCrop(crop:Crop){
     try {
-        // const base64Image = Uint8Array.from(
-        //     Buffer.from(crop.cropImage,'base64')
-        // )
+        const cropSeason = Number(crop.season);
         const newCrop = await prisma.crop.create({
             data:{
                 cropCode:crop.cropCode,
@@ -13,7 +11,7 @@ export async function AddCrop(crop:Crop){
                 cropImage:crop.cropImage,
                 scientificName:crop.scientificName,
                 category:crop.category,
-                season:crop.season
+                season:cropSeason
             }
         })
         console.log("Crop Added : " , newCrop);
@@ -22,9 +20,36 @@ export async function AddCrop(crop:Crop){
     }
 }
 
-export async function UpdateCrop(cropCode:string, crop:Crop){
+export async function UpdateCrop(cropCode: string, crop: Crop) {
+    try {
+        const existingCrop = await prisma.crop.findUnique({
+            where: { cropCode: cropCode },
+        });
 
+        if (!existingCrop) {
+            console.log(`Crop with cropCode: ${cropCode} not found.`);
+            return null;
+        }
+
+        const cropSeason = Number(crop.season);
+        const cropUpdate = await prisma.crop.update({
+            where: { cropCode: cropCode },
+            data: {
+                cropName: crop.cropName,
+                cropImage: crop.cropImage,
+                scientificName: crop.scientificName,
+                category: crop.category,
+                season: cropSeason,
+            },
+        });
+
+        console.log("Crop Updated ", cropUpdate);
+        return cropUpdate;
+    } catch (err) {
+        console.error("Error during crop updating:", err);
+    }
 }
+
 
 export async function DeleteCrop(cropCode:string){
     try {

@@ -20,7 +20,7 @@ router.post('/addCrop',async (req,res)=>{
 
 router.put('/updateCrop/:cropCode', async (req,res)=>{
     console.log("Received Update Crop : ", req.body);
-    const cropCode:string =String(+req.params.cropCode);
+    const cropCode:string = req.params.cropCode;
     const crop : Crop = req.body;
 
     try{
