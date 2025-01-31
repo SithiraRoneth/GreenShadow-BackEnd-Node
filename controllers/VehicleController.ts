@@ -9,7 +9,7 @@ router.post('/addVehicle', async (req, res) => {
     console.log("Received Vehicle : ", vehicle);
     try {
         const addedVehicle = await AddVehicle(vehicle);
-        res.status(201).json(addedVehicle);
+        res.status(201).json({message:"Vehicle added successfully",vehicle:addedVehicle});
     } catch (err) {
         console.log("Error during vehicle :", err);
         res.status(400).send("Error during vehicle");
@@ -23,7 +23,7 @@ router.put('/updateVehicle:licensePlateNo',async (req,res)=>{
 
     try {
         const updatedVehicle = await updateVehicle(licensePlateNo,vehicle);
-        res.status(201).send("Vehicle Updated ");
+        res.status(201).json({message : "Vehicle Updated ", vehicle:updatedVehicle});
         console.log("Updated : ", updatedVehicle);
     }catch (err){
         console.log("Error during updating vehicle : ", err);
@@ -36,7 +36,7 @@ router.delete('/deleteVehicle:licensePlateNo',async (req,res)=>{
     const vehicleCode:string = req.params.licensePlateNo;
     try{
         await deleteVehicle(vehicleCode);
-        res.status(201).send("Vehicle Deleted");
+        res.status(201).json("Vehicle Deleted");
     }catch (err){
         console.log("Error during vehicle deleting : ", err);
         res.status(400).send("Error during vehicle");

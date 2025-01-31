@@ -9,17 +9,32 @@ export async function AddVehicle(vehicle:Vehicle){
                 fuelType:vehicle.fuelType,
                 color:vehicle.color,
                 vehicleCategory:vehicle.vehicleCategory,
-                // staffEmail:vehicle.staffEmail
+                staffEmail:vehicle.staffEmail
             }
         })
         console.log("Vehicle Added : ",newVehicle)
+        return newVehicle;
     }catch (err){
         console.log("Error during vehicle adding : ",err)
     }
 }
 
-export async function updateVehicle(vehicleId:string,v:Vehicle){
-
+export async function updateVehicle(vehicleId:string,vehicle:Vehicle){
+    try {
+        const updatedVehicle = await prisma.vehicle.update({
+            where:{licensePlateNo:vehicleId},
+            data:{
+                fuelType:vehicle.fuelType,
+                color:vehicle.color,
+                vehicleCategory:vehicle.vehicleCategory,
+                staffEmail:vehicle.staffEmail
+            }
+        });
+        console.log("Vehicle Updated : ",updatedVehicle)
+        return updatedVehicle;
+    }catch (err){
+        console.log("Error during vehicle :",err)
+    }
 }
 
 export async function deleteVehicle(vehicleId:string){
@@ -34,7 +49,8 @@ export async function deleteVehicle(vehicleId:string){
 
 export async function getAllVehicle(){
     try{
-        await prisma.vehicle.findMany();
+        const getAll = await prisma.vehicle.findMany();
+        return getAll;
     }catch (err){
         console.log("Error getting vehicle : ",err);
     }
