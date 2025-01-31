@@ -2,6 +2,8 @@ import express from 'express';
 import fileupload from 'express-fileupload';
 import CropController from "./controllers/CropController";
 import EquipmentController from "./controllers/EquipmentController";
+import VehicleController from "./controllers/VehicleController";
+import StaffController from "./controllers/StaffController";
 
 const app = express();
 
@@ -17,6 +19,8 @@ app.use('/',(req,res, next)=>{
 
 app.use('/crop',CropController);
 app.use('/equip',EquipmentController);
+app.use('/vehicle',VehicleController);
+app.use('/staff',StaffController);
 
 app.listen(3000,(err)=>{
     console.log("Server Running on port 3000");
