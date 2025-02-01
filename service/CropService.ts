@@ -8,7 +8,7 @@ export async function AddCrop(crop:Crop){
             data:{
                 cropCode:crop.cropCode,
                 cropName:crop.cropName,
-                cropImage:crop.cropImage,
+                cropImage:(crop.cropImage),
                 scientificName:crop.scientificName,
                 category:crop.category,
                 season:cropSeason
