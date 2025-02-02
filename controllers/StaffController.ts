@@ -15,11 +15,10 @@ router.post('/addStaff',async (req,res)=>{
     }
 })
 
-router.put('/updateStaff:email',async (req,res)=>{
+router.put('/updateStaff/:email',async (req,res)=>{
     console.log("Received Update staff :",req.body);
     const staffEmail:string = req.params.email;
     const staff:Staff = req.body;
-
     try{
         const updatedStaff = await UpdateStaff(staffEmail,staff);
         res.status(200).json({ message: "Staff updated successfully", staff: updatedStaff });
@@ -29,7 +28,7 @@ router.put('/updateStaff:email',async (req,res)=>{
     }
 })
 
-router.delete('/deleteStaff:email',async (req,res)=>{
+router.delete('/deleteStaff/:email',async (req,res)=>{
     const staff_email = req.params.email;
     try{
         await DeleteStaff(staff_email);

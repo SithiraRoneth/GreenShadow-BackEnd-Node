@@ -3,9 +3,16 @@ import {prisma} from "../database/prisma-data-store";
 
 export async function AddStaff(staff:Staff){
     try{
+        const contact = Number(staff.contactNo);
         const addedStaff = await prisma.staff.create({
             data:{
-                ...staff
+                email:staff.email,
+                firstName:staff.firstName,
+                lastName:staff.lastName,
+                gender:staff.gender,
+                address:staff.address,
+                contactNo:contact,
+                jobrole:staff.jobRole
             }
         })
         console.log("Added Staff :",addedStaff);
@@ -18,9 +25,10 @@ export async function AddStaff(staff:Staff){
 export async function UpdateStaff(staffId:string,staff:Staff){
     try{
         const updatedStaff = await prisma.staff.update({
-            where:{email:staffId},
-            data:{
-                ...staff
+            where: { email: staffId },
+            data: {
+                ...staff,
+                contactNo: Number(staff.contactNo)
             }
         });
         console.log("Updated staff :",updatedStaff)
