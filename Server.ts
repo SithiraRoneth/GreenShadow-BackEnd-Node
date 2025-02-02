@@ -5,6 +5,7 @@ import EquipmentController from "./controllers/EquipmentController";
 import VehicleController from "./controllers/VehicleController";
 import StaffController from "./controllers/StaffController";
 import FieldController from "./controllers/FieldController";
+import LogController from "./controllers/LogController";
 
 const app = express();
 
@@ -23,6 +24,7 @@ app.use('/equip',EquipmentController);
 app.use('/vehicle',VehicleController);
 app.use('/staff',StaffController);
 app.use('/field',FieldController);
+app.use('/logs',LogController);
 
 app.listen(3000,(err)=>{
     console.log("Server Running on port 3000");
