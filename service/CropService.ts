@@ -16,6 +16,7 @@ export async function AddCrop(crop:Crop){
             }
         })
         console.log("Crop Added : " , newCrop);
+        return newCrop;
     }catch (err){
         console.log("Error during crop adding : ", err)
     }
@@ -64,7 +65,7 @@ export async function DeleteCrop(cropCode:string){
 
 export async function GetAllCrops(){
     try{
-        await prisma.crop.findMany();
+        return await prisma.crop.findMany();
     }catch (err){
         console.log("Error getting crops : ",err)
     }
