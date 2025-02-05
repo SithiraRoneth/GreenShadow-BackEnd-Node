@@ -4,11 +4,12 @@ import {prisma} from "../database/prisma-data-store";
 export async function AddCrop(crop:Crop){
     try {
         const cropSeason = Number(crop.season);
+        console.log("Image", crop.cropImage)
         const newCrop = await prisma.crop.create({
             data:{
                 cropCode:crop.cropCode,
                 cropName:crop.cropName,
-                cropImage:(crop.cropImage),
+                cropImage:crop.cropImage,
                 scientificName:crop.scientificName,
                 category:crop.category,
                 season:cropSeason
