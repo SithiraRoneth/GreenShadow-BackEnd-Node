@@ -15,7 +15,7 @@ router.post('/addEquip',async (req,res)=>{
     }
 });
 
-router.put('/updateEquip:equipCode', async (req,res)=>{
+router.put('/updateEquip/:equipCode', async (req,res)=>{
     const equipCode = req.params.equipCode;
     const equip = req.body;
 
@@ -27,9 +27,9 @@ router.put('/updateEquip:equipCode', async (req,res)=>{
     }
 });
 
-router.delete('/deleteEquip:equipCode', async (req,res)=>{
-    const equipCode = req.params.equipCode;
-
+router.delete('/deleteEquip/:equipmentCode', async (req,res)=>{
+    const equipCode = req.params.equipmentCode;
+    console.log(equipCode)
     try{
         const deletedEquip = await DeleteEquip(equipCode);
         res.status(201).json({message:"Equipment Deleted", deletedEquip});

@@ -8,7 +8,7 @@ export async function AddEquip(e:Equipment){
             data:{
                 equipmentCode:e.equipmentCode,
                 equipmentName:e.equipmentName,
-                equipmentType:e.equipmentStatus
+                equipmentType:e.equipmentType
             }
         })
         console.log("Equipment Added : " , newEquip);
@@ -23,7 +23,7 @@ export async function UpdateEquip(equipCode:string,equip:Equipment){
             where:{equipmentCode:equipCode},
             data:{
                 equipmentName:equip.equipmentName,
-                equipmentType:equip.equipmentStatus
+                equipmentType:equip.equipmentType
             }
         })
         console.log("Equipment were updated : ", updatedEquip);
