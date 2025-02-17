@@ -6,6 +6,7 @@ const router = express.Router();
 
 router.post('/addStaff',async (req,res)=>{
     const staff:Staff = req.body;
+    console.log(staff)
     try{
         const addedStaff = await AddStaff(staff);
         console.log("Added staff :",addedStaff);

@@ -5,5 +5,5 @@ export class Staff{
     gender!:string;
     address!:string;
     contactNo!:number;
-    jobRole!:string;
+    jobrole!:string;
 }

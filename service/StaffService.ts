@@ -12,7 +12,7 @@ export async function AddStaff(staff:Staff){
                 gender:staff.gender,
                 address:staff.address,
                 contactNo:contact,
-                jobrole:staff.jobRole
+                jobrole:staff.jobrole
             }
         })
         console.log("Added Staff :",addedStaff);
