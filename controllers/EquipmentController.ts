@@ -16,7 +16,7 @@ router.post('/addEquip',async (req,res)=>{
 });
 
 router.put('/updateEquip/:equipCode', async (req,res)=>{
-    const equipCode = req.params.equipCode;
+    const equipCode:string = req.params.equipCode;
     const equip = req.body;
 
     try{

@@ -19,9 +19,10 @@ router.post('/addCrop', async (req, res) => {
 });
 
 router.put('/updateCrop/:cropCode', async (req, res) => {
-    console.log("Received Update Crop : ", req.body);
     const cropCode: string = req.params.cropCode;
+    console.log("Received Crop : ",cropCode);
     const crop: Crop = req.body;
+    crop.cropImage = extractImages(req)
 
     try {
         await UpdateCrop(cropCode, crop);
@@ -33,8 +34,8 @@ router.put('/updateCrop/:cropCode', async (req, res) => {
 })
 
 router.delete('/deleteCrop/:cropCode', async (req, res) => {
-    console.log("Received Deleted crop code");
     const cropCode: string = String(req.params.cropCode);
+    console.log("Received Deleted crop code : ",cropCode);
     try {
         await DeleteCrop(cropCode);
         res.status(200).send("Crop Deleted")
@@ -47,8 +48,12 @@ router.delete('/deleteCrop/:cropCode', async (req, res) => {
 router.get('/viewAllCrop', async (req, res) => {
     console.log("All crop details are retrieved");
     try {
-        const crops = await GetAllCrops();
-        res.json(crops)
+        const crops = await GetAllCrops() ?? [];
+        const formattedCrops = crops.map(crop => ({
+            ...crop,
+            image: crop.cropImage ? Buffer.from(crop.cropImage).toString("base64") : null
+        }));
+        res.json(formattedCrops)
     } catch (err) {
         console.log("error during getting crops")
     }

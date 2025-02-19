@@ -16,9 +16,12 @@ routes.post('/addField',async (req,res)=>{
     }
 });
 
-routes.put('/updateField:fieldCode',async (req,res)=>{
+routes.put('/updateField/:fieldCode',async (req,res)=>{
     const fieldCode:string = req.params.fieldCode;
+    console.log("Received Field : ",fieldCode);
+
     const field :Field = req.body;
+    field.fieldImage = extractImages(req);
 
     try{
         const updatedField = await UpdateField(fieldCode,field);
@@ -28,9 +31,9 @@ routes.put('/updateField:fieldCode',async (req,res)=>{
     }
 });
 
-routes.delete('/deleteField:fieldCode', async (req,res)=>{
+routes.delete('/deleteField/:fieldCode', async (req,res)=>{
     const fieldCode:string = req.params.fieldCode;
-
+    console.log("Received Deleted Field Code : ",fieldCode);
     try{
         const deleteField = await DeleteField(fieldCode);
         res.status(201).json({message:"Field deleted", field:deleteField});
@@ -41,8 +44,12 @@ routes.delete('/deleteField:fieldCode', async (req,res)=>{
 
 routes.get('/getAllField',async (req,res)=>{
     try {
-        const getAll = await GetAllFields();
-        res.status(201).send(getAll);
+        const fields = await GetAllFields() ?? [];
+        const formattedField = fields.map(field =>({
+            ...field,
+            image: field.fieldImage ? Buffer.from(field.fieldImage).toString("base64") : null
+        }));
+        res.json(formattedField)
     }catch (err){
         console.log("Error getting fields")
     }

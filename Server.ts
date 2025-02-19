@@ -6,6 +6,7 @@ import VehicleController from "./controllers/VehicleController";
 import StaffController from "./controllers/StaffController";
 import FieldController from "./controllers/FieldController";
 import LogController from "./controllers/LogController";
+import AuthController from "./controllers/AuthController";
 
 const app = express();
 
@@ -25,6 +26,7 @@ app.use('/vehicle',VehicleController);
 app.use('/staff',StaffController);
 app.use('/field',FieldController);
 app.use('/logs',LogController);
+app.use('/auth',AuthController)
 
 app.listen(3000,(err)=>{
     console.log("Server Running on port 3000");

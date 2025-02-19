@@ -58,6 +58,7 @@ export async function DeleteCrop(cropCode:string){
         await prisma.crop.delete({
             where:{cropCode:cropCode}
         })
+        console.log("Crop Deleted")
     }catch (err){
         console.log("Error during customer deleting : ", err)
     }
