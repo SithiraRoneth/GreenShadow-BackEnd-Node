@@ -6,7 +6,7 @@ import VehicleController from "./controllers/VehicleController";
 import StaffController from "./controllers/StaffController";
 import FieldController from "./controllers/FieldController";
 import LogController from "./controllers/LogController";
-import AuthController from "./controllers/AuthController";
+import AuthController, {authenticationToken} from "./controllers/AuthController";
 
 const app = express();
 

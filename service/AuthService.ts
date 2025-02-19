@@ -17,3 +17,13 @@ export async function AddUser(auth: Auth) {
         console.log("Error during user save : ", err);
     }
 }
+
+export async function verifyUser(verify:Auth){
+    const user : Auth | null = await prisma.user.findUnique({
+        where:{userEmail: verify.userEmail},
+    });
+    if (!user){
+        return false;
+    }
+    return await bcrypt.compare(verify.password,user.password);
+}
