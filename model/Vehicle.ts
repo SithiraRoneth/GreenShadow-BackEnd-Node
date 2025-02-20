@@ -3,5 +3,4 @@ export class Vehicle{
     fuelType!:string;
     color!:string;
     vehicleCategory!:string;
-    staffEmail!:string;
 }

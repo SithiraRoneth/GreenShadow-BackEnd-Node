@@ -16,7 +16,7 @@ router.post('/addVehicle', async (req, res) => {
     }
 });
 
-router.put('/updateVehicle:licensePlateNo',async (req,res)=>{
+router.put('/updateVehicle/:licensePlateNo',async (req,res)=>{
     console.log("Received Update vehicle : ",req.body);
     const licensePlateNo:string = req.params.licensePlateNo;
     const vehicle:Vehicle = req.body;
@@ -31,7 +31,7 @@ router.put('/updateVehicle:licensePlateNo',async (req,res)=>{
     }
 })
 
-router.delete('/deleteVehicle:licensePlateNo',async (req,res)=>{
+router.delete('/deleteVehicle/:licensePlateNo',async (req,res)=>{
     console.log("Received Deleted vehicle :",req.params.licensePlateNo);
     const vehicleCode:string = req.params.licensePlateNo;
     try{

@@ -9,7 +9,6 @@ export async function AddVehicle(vehicle:Vehicle){
                 fuelType:vehicle.fuelType,
                 color:vehicle.color,
                 vehicleCategory:vehicle.vehicleCategory,
-                staffEmail:vehicle.staffEmail
             }
         })
         console.log("Vehicle Added : ",newVehicle)
@@ -27,7 +26,6 @@ export async function updateVehicle(vehicleId:string,vehicle:Vehicle){
                 fuelType:vehicle.fuelType,
                 color:vehicle.color,
                 vehicleCategory:vehicle.vehicleCategory,
-                staffEmail:vehicle.staffEmail
             }
         });
         console.log("Vehicle Updated : ",updatedVehicle)

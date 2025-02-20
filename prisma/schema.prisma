@@ -36,14 +36,13 @@ model Equipment {
 }
 
 model Staff {
-  email     String    @id @unique
+  email     String @id @unique
   firstName String
   lastName  String
   gender    String
   address   String
   contactNo Int
   jobrole   String
-  vehicles  Vehicle[]
 }
 
 model Vehicle {
@@ -51,8 +50,6 @@ model Vehicle {
   fuelType        String
   color           String
   vehicleCategory String
-  Staff           Staff? @relation(fields: [staffEmail], references: [email])
-  staffEmail      String @unique @map("staff_email")
 }
 
 model User {
