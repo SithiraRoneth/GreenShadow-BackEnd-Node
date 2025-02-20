@@ -29,11 +29,12 @@ router.post('/login',async (req,res)=>{
             const access_token = jwt.sign({userEmail},process.env.ACCESS_TOKEN as Secret,{expiresIn:"1m"});
             const refreshToken = jwt.sign({userEmail},process.env.REFRESH_TOKEN as Secret,{expiresIn:"7d"})
             res.json({accessToken:access_token, refreshToken:refreshToken});
+            console.log(access_token)
         }else {
             res.sendStatus(403).send('Invalid Credential')
         }
     }catch (err){
-        console.log(err);
+        console.log("User Credentials doesn't match");
     }
 });
 
